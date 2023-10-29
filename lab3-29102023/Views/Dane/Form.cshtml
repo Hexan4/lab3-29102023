@@ -1,0 +1,30 @@
+﻿@using lab3_29102023.Models;
+@model Dane
+
+@{
+    ViewData["Title"] = "aha";
+}
+
+<form asp-action="Form" method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="imie">Twoje imie</label>
+        <input asp-for="imie"/>
+    </div>
+    <div>
+        <label asp-for="email">Twoj Email</label>
+        <input asp-for="email" />
+    </div>
+    <div>
+        <label asp-for="temat">temat</label>
+        <input asp-for="temat" />
+    </div>
+    <div>
+        <label asp-for="tresc">tresc</label>
+        <input asp-for="tresc" />
+    </div>
+    <div>
+        <input type="submit"/>
+    </div>
+    
+</form>
