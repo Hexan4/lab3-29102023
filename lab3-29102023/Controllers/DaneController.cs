@@ -9,25 +9,32 @@ namespace lab3_29102023.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult Form()
         {
             return View();
         }
-        [HttpPost]
 
+        [HttpPost]
         public IActionResult Form(Dane dane)
         {
             if (ModelState.IsValid)
             {
+                ViewBag.SuccessMessage = "Rejestracja zakończona pomyślnie";
                 return View("Wynik", dane);
             }
-            else return View();
+            else
+            {
+                // Jeśli chcesz, możesz również przekazać komunikat o błędzie
+                ViewBag.ErrorMessage = "Wystąpiły błędy, proszę poprawić formularz.";
+                return View(dane); // Zwróć ten sam widok z błędami walidacji
+            }
         }
+
         public IActionResult Wynik(Dane dane)
         {
             return View(dane);
         }
     }
-
 }

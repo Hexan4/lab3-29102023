@@ -2,29 +2,74 @@
 @model Dane
 
 @{
-    ViewData["Title"] = "aha";
+    ViewData["Title"] = "Formularz Rejestracji";
 }
 
 <form asp-action="Form" method="post">
     <div asp-validation-summary="All"></div>
+
     <div>
-        <label asp-for="imie">Twoje imie</label>
-        <input asp-for="imie"/>
+        <label asp-for="Imie">Twoje imię</label>
+        <input asp-for="Imie" class="form-control" />
+        <span asp-validation-for="Imie" class="text-danger"></span>
     </div>
+
     <div>
-        <label asp-for="email">Twoj Email</label>
-        <input asp-for="email" />
+        <label asp-for="Nazwisko">Twoje nazwisko</label>
+        <input asp-for="Nazwisko" class="form-control" />
+        <span asp-validation-for="Nazwisko" class="text-danger"></span>
     </div>
+
     <div>
-        <label asp-for="temat">temat</label>
-        <input asp-for="temat" />
+        <label asp-for="Email">Twój Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+
     <div>
-        <label asp-for="tresc">tresc</label>
-        <input asp-for="tresc" />
+        <label asp-for="Haslo">Hasło</label>
+        <input asp-for="Haslo" class="form-control" />
+        <span asp-validation-for="Haslo" class="text-danger"></span>
     </div>
+
     <div>
-        <input type="submit"/>
+        <label asp-for="PotwierdzenieHasla">Potwierdź hasło</label>
+        <input asp-for="PotwierdzenieHasla" class="form-control" />
+        <span asp-validation-for="PotwierdzenieHasla" class="text-danger"></span>
     </div>
-    
+
+    <div>
+        <label asp-for="Telefon">Telefon</label>
+        <input asp-for="Telefon" class="form-control" />
+        <span asp-validation-for="Telefon" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Wiek">Wiek</label>
+        <input asp-for="Wiek" class="form-control" />
+        <span asp-validation-for="Wiek" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Miasto">Miasto</label>
+        <select asp-for="Miasto" asp-items="Html.GetEnumSelectList<Dane.Miasta>()" class="form-control"></select>
+        <span asp-validation-for="Miasto" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button type="submit">Wyślij</button>
+        <button type="button" onclick="resetForm()">Wyczyść</button>
+    </div>
 </form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function resetForm() {
+            document.forms[0].reset();
+        }
+    </script>
+}
